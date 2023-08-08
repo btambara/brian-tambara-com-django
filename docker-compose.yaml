@@ -1,0 +1,25 @@
+services:
+  web:
+    build:
+      context: .
+    container_name: btc-web
+    command: gunicorn --bind 0.0.0.0:8000 brian_tambara_com.wsgi --workers=4
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    expose:
+      - "8000"
+  nginx:
+    build: nginx
+    container_name: btc-nginx
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+volumes:
+  media_volume:
+  static_volume:
