@@ -1,0 +1,38 @@
+services:
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+  web:
+    image: ghcr.io/btambara/brian-tambara-com:main
+    container_name: btc-web
+    command: gunicorn --bind 0.0.0.0:8000 brian_tambara_com.wsgi --workers=4
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    expose:
+      - "8000"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+  nginx:
+    build: nginx
+    container_name: btc-nginx
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+volumes:
+  media_volume:
+  static_volume:
