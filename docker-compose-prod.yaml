@@ -13,6 +13,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
   web:
     image: ghcr.io/btambara/brian-tambara-com:main
+    restart: always
     container_name: btc-web
     command: gunicorn --bind 0.0.0.0:8000 brian_tambara_com.wsgi --workers=4
     volumes:
