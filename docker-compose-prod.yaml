@@ -11,18 +11,31 @@ services:
       - WATCHTOWER_INCLUDE_RESTARTING=true
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+  postgres:
+    image: "postgres:15.4"
+    container_name: btc-postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    env_file:
+      - .env
   web:
     image: ghcr.io/btambara/brian-tambara-com:main
     restart: always
     container_name: btc-web
-    command: gunicorn --bind 0.0.0.0:8000 brian_tambara_com.wsgi --workers=4
+    command: sh -c "python manage.py migrate &&
+              gunicorn --bind 0.0.0.0:8000 brian_tambara_com.wsgi --workers=4"
+    env_file:
+      - .env
     volumes:
       - static_volume:/app/www/static
       - media_volume:/app/media
     expose:
       - "8000"
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+    depends_on:
+      - postgres
+      - nginx
   nginx:
     build: nginx
     container_name: btc-nginx
@@ -32,8 +45,7 @@ services:
       - media_volume:/app/media
     ports:
       - "80:80"
-    depends_on:
-      - web
 volumes:
   media_volume:
   static_volume:
+  db:
