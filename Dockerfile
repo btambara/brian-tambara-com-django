@@ -7,3 +7,5 @@ COPY brian_tambara_com .
 COPY setup/requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
+
+RUN python manage.py collectstatic --noinput
