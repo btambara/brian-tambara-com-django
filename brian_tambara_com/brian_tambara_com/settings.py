@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_vite",
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,14 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATIC_ROOT = BASE_DIR / "www/static"
+STATIC_ROOT = BASE_DIR / "site_media/static"
+
+# django-vite
+DJANGO_VITE_ASSETS_PATH = BASE_DIR / "dist"
+
+DJANGO_VITE_DEV_MODE = False
+
+STATICFILES_DIRS = [DJANGO_VITE_ASSETS_PATH]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

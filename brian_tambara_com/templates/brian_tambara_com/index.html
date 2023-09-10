@@ -1,10 +1,13 @@
 {% extends "base.html" %}
+{% load django_vite %}
+
+{% vite_asset 'src/main.ts' %}
 
 {% block title %}
-  Brian Tambara
+  Brian Tambara | Introduction
 {% endblock %}
 
 
 {% block content %}
-  <h1>Brian Tambara</h1>
+  <div id="index"></div>
 {% endblock %}
