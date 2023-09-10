@@ -29,7 +29,7 @@ services:
     env_file:
       - .env
     volumes:
-      - static_volume:/app/www/static
+      - static_volume:/app/site_media/static
       - media_volume:/app/media
     expose:
       - "8000"
@@ -41,7 +41,7 @@ services:
     container_name: btc-nginx
     restart: always
     volumes:
-      - static_volume:/app/www/static
+      - static_volume:/app/site_media/static
       - media_volume:/app/media
     ports:
       - "80:80"
