@@ -24,7 +24,7 @@ services:
     image: ghcr.io/btambara/brian-tambara-com:main
     restart: always
     container_name: btc-web
-    command: sh -c "python manage.py migrate &&
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --clear --noinput &&
               gunicorn --bind 0.0.0.0:8000 brian_tambara_com.wsgi --workers=4"
     env_file:
       - .env
