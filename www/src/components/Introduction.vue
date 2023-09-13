@@ -1,9 +1,11 @@
 <template>
-  <div class="intro">
-    <img src="../assets/code.svg" class="logo" alt="Code logo" />
-    <h1>Hi! I'm Brian</h1>
-    <p>I am a Los Angeles based Software Engineer currently looking for work. My preferred languages for building web applications are Python, Java, and Typescript.</p>
-  </div>
+    <div class="col">
+      <img src="../assets/code.svg" class="logo" alt="Code logo" />
+    </div>
+    <div class="col text-start">
+      <h1>Hi! I'm Brian</h1>
+      <p>I am a Los Angeles based Software Engineer currently looking for work. My preferred languages for building web applications are Python, Java, and Typescript.</p>
+    </div>
 </template>
 
 <style scoped>
