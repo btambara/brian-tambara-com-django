@@ -5,6 +5,11 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   base: '/static/',
+  resolve: {
+    alias: {
+      '~bootstrap': '/site_media/node_modules/bootstrap',
+    }
+  },
   build: {
     manifest: true,
     emptyOutDir: true,

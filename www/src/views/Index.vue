@@ -4,6 +4,10 @@ import ProfessionalProfile from './ProfessionalProfile.vue';
 </script>
 
 <template>
-    <Introduction />
-    <ProfessionalProfile />
+    <div class="container text-center">
+        <div class="row align-items-center">
+            <Introduction />
+            <ProfessionalProfile />
+        </div>
+    </div>
 </template>
