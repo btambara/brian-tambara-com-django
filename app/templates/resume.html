@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load django_vite %}
+
+{% vite_asset 'src/main.ts' %}
+
+{% block title %}
+  Brian Tambara | Resume
+{% endblock %}
+
+
+{% block content %}
+  <div id="resume"></div>
+  {{ description|json_script:"description" }}
+  {{ jobs|json_script:"jobs" }}
+  {{ projects|json_script:"projects" }}
+  {{ degrees|json_script:"degrees" }}
+{% endblock %}

@@ -14,7 +14,7 @@ WORKDIR /app
 
 COPY --from=node site_media/dist dist
 
-COPY brian_tambara_com .
+COPY app .
 
 COPY setup/requirements.txt requirements.txt
 
