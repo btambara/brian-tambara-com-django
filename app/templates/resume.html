@@ -10,4 +10,8 @@
 
 {% block content %}
   <div id="resume"></div>
+  {{ description|json_script:"description" }}
+  {{ jobs|json_script:"jobs" }}
+  {{ projects|json_script:"projects" }}
+  {{ degrees|json_script:"degrees" }}
 {% endblock %}
